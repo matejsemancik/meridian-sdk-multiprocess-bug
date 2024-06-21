@@ -26,7 +26,7 @@ class SecondaryActivity : ComponentActivity(), DefaultLocationUpdateListener {
             MeridianMultiprocessBugTheme {
                 LocationLoggerScreen(
                     modifier = Modifier.fillMaxSize(),
-                    title = "SecondaryActivity",
+                    title = "New process",
                     onBack = ::finish
                 )
             }

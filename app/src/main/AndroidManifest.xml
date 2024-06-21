@@ -29,6 +29,7 @@
 
         <activity
             android:name=".SecondaryActivity"
+            android:process=":NewProcess"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MeridianMultiprocessBug"
             tools:ignore="DiscouragedApi,LockedOrientationActivity" />

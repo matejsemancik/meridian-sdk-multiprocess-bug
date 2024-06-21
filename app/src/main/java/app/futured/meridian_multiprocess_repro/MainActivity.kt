@@ -20,7 +20,7 @@ class MainActivity : ComponentActivity(), DefaultLocationUpdateListener {
             MeridianMultiprocessBugTheme {
                 LocationLoggerScreen(
                     modifier = Modifier.fillMaxSize(),
-                    title = "MainActivity",
+                    title = "Default process",
                     onNext = { startActivity(SecondaryActivity.getStartIntent(this)) }
                 )
             }

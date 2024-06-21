@@ -19,5 +19,8 @@ dependencyResolutionManagement {
     }
 }
 
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 rootProject.name = "MeridianMultiprocessBug"
 include(":app")
+include(":meridianSdk")

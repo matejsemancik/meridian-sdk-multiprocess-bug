@@ -38,3 +38,8 @@ The app is configured to observe simulated location from Meridian Editor.
 2. Optional: Start observing location in this Activity -> No crash happens.
 3. Click "New process" button -> The `SecondaryActivity` in non-default process is launched.
 4. Click on "Start listening for location" -> Observe mentioned crash 👆
+
+**Alternative:**
+
+1. In `AndroidManifest.xml`, explicitly configure `MainActivity`'s process.
+2. Start observing location in this activity -> Observe crash.

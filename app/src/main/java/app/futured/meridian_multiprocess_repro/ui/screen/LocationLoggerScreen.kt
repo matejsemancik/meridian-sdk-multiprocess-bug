@@ -7,10 +7,15 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -50,14 +55,26 @@ fun LocationLoggerScreen(
             EditorKey.forApp(BuildConfig.MERIDIAN_APP_ID),/* listener = */
             object : DefaultLocationUpdateListener {
                 override fun onLocationUpdate(p0: MeridianLocation?) {
-                    Timber.d("location update: $p0")
+                    Timber.tag(title).d("onLocationUpdate: $p0")
                     meridianLocation = p0
                 }
             })
     }
-    
+
+    DisposableEffect(Unit) {
+        onDispose {
+            locationManager.stopListeningForLocation()
+        }
+    }
+
     Scaffold(modifier = modifier, topBar = {
-        CenterAlignedTopAppBar(title = { Text(text = title) })
+        CenterAlignedTopAppBar(title = { Text(text = title) }, navigationIcon = {
+            if (onBack != null) {
+                IconButton(onClick = onBack) {
+                    Icon(Icons.Default.ArrowBack, contentDescription = "Go back")
+                }
+            }
+        })
     }) { innerPadding ->
         Column(
             Modifier
@@ -94,6 +111,13 @@ fun LocationLoggerScreen(
             }) {
                 Text(text = "Stop listening for location")
             }
+
+            if (onNext != null) {
+                Spacer(Modifier.height(8.dp))
+                OutlinedButton(onClick = onNext) {
+                    Text(text = "New process")
+                }
+            }
         }
     }
 }
@@ -103,7 +127,10 @@ fun LocationLoggerScreen(
 private fun LocationLoggerScreenPreview() {
     MeridianMultiprocessBugTheme {
         LocationLoggerScreen(
-            title = "I'm a toolbar", modifier = Modifier.fillMaxSize()
+            title = "I'm a toolbar",
+            onNext = {},
+            onBack = {},
+            modifier = Modifier.fillMaxSize()
         )
     }
 }

@@ -11,6 +11,8 @@ class App : Application() {
         super.onCreate()
         plantTimber()
         setupMeridian()
+
+        Timber.d("Application instance $this created")
     }
 
     private fun plantTimber() {

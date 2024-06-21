@@ -1,5 +1,7 @@
 package app.futured.meridian_multiprocess_repro
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -9,7 +11,11 @@ import androidx.compose.ui.Modifier
 import app.futured.meridian_multiprocess_repro.ui.screen.LocationLoggerScreen
 import app.futured.meridian_multiprocess_repro.ui.theme.MeridianMultiprocessBugTheme
 
-class MainActivity : ComponentActivity(), DefaultLocationUpdateListener {
+class SecondaryActivity : ComponentActivity(), DefaultLocationUpdateListener {
+
+    companion object {
+        fun getStartIntent(context: Context) = Intent(context, SecondaryActivity::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,8 +26,8 @@ class MainActivity : ComponentActivity(), DefaultLocationUpdateListener {
             MeridianMultiprocessBugTheme {
                 LocationLoggerScreen(
                     modifier = Modifier.fillMaxSize(),
-                    title = "MainActivity",
-                    onNext = { startActivity(SecondaryActivity.getStartIntent(this)) }
+                    title = "SecondaryActivity",
+                    onBack = ::finish
                 )
             }
         }

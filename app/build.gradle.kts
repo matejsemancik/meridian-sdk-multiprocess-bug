@@ -74,10 +74,10 @@ dependencies {
     // App using Meridian SDK will refuse to compile without old Material library due to dependencies
     // on Material bottom sheets inside SDK
     implementation(libs.google.material)
-
     // Why not just provide transitive dependencies from SDK? Oh wait, not hosted on any Maven repo 🤡
     implementation(libs.bundles.meridianSdkDependencies)
     implementation(projects.meridianSdk)
+    implementation(libs.logging.timber)
 }
 
 secrets {

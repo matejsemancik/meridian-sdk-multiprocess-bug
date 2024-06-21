@@ -31,7 +31,8 @@ MERIDIAN_EDITOR_TOKEN=****
 
 ### Repro steps
 
-In this sample project, the `SecondaryActivity` is configured to be launched in non-default process.
+In this sample project, the `SecondaryActivity` is configured to be launched in non-default process.  
+The app is configured to observe simulated location from Meridian Editor.
 
 1. Launch the app -> App opens `MainActivity` in default process.
 2. Optional: Start observing location in this Activity -> No crash happens.
